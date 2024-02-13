@@ -2,10 +2,10 @@ import React from 'react';
 
 export const NavMenuItem = ({title}) => {
     return(
-            <li className="navbar-menu-item">
+            <div className="navbar-menu-item">
                 <button>
                     {title}
                 </button>
-            </li> 
+            </div> 
     );
 }
