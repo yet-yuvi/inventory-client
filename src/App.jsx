@@ -1,6 +1,5 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import {Navbar, Footer} from './components';
 import './App.css'
 
 function MainArea() {
@@ -20,7 +19,7 @@ function App() {
       <Footer />  
     </div>
   )
-  
+
 }
 
 export default App
