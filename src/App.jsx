@@ -1,11 +1,11 @@
 import React from 'react';
-import {Navbar, Footer} from './components';
+import {Navbar, Footer, Products} from './components';
 import './App.css'
 
 function MainArea() {
   return(
     <main>
-      <h1>Main Area</h1>
+      <Products />
     </main>
   );
 }
