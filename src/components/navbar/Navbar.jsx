@@ -5,7 +5,7 @@ import './Navbar.css';
 
 export function Navbar() {
 
-    const navItems = ['Home', 'Contact', 'Blog'];
+    const navItems = ['Home', 'Referance', 'Contact', 'Blog'];
     const isAuthenticated = false;
 
     return(
@@ -20,8 +20,7 @@ export function Navbar() {
               })
             }
             {
-              isAuthenticated ? <button>Logout</button> : <button>Login</button>
-            }
+              isAuthenticated ? <button>Logout</button> : <div> <button>Login</button> </div>            }
         </div>
       </div>
     );
