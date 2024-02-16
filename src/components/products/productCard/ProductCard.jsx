@@ -47,11 +47,11 @@ export const ProductCard = ({
       <button onClick={handleAddToCart} className="add-cart-btn">
         Add to Cart
       </button>
-      {isAddedToCart && (
+      {isAddedToCart && 
         <button onClick={handleRemoveFromCart} className="remove-cart-btn">
           Remove from Cart
         </button>
-      )}
+      }
     </div>
   );
 };
