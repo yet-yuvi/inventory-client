@@ -56,33 +56,19 @@
 // };
 
 // Remove product button added
-import { useState } from "react";
 import { ProductCard } from "./productCard";
-import {ProductServices} from "../../services";
+import { useProducts } from "./hooks";
+
 import "./Products.css";
 
 export const Products = () => {
-  const [cart, setCart] = useState([]);
-  const products = ProductServices.getProducts();
-
-  const isProductExistInCart = (productId) => {
-    return cart.some((p) => p.id === productId);
-  };
-
-  const addProductToCart = (prod) => {
-    if (isProductExistInCart(prod.id)) {
-      alert("Already Added");
-      return;
-    }
-    setCart([...cart, prod]);
-  };
-
-  const removeProductFromCart = (productId) => {
-    const updatedCart = cart.filter((cartItem) => cartItem.id !== productId);
-    setCart(updatedCart);
-  };
-
-  const cartItems = cart.length;
+  const {
+    cartItems,
+    products,
+    isProductExistInCart,
+    addProductToCart,
+    removeProductFromCart,
+  } = useProducts();
 
   return (
     <div className="products">
