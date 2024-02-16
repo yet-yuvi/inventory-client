@@ -10,4 +10,12 @@
     color: white;
     border-radius: 10px;
     padding: 8px 16px;
+    margin-right: 5px;
+}
+.remove-cart-btn {
+    background-color: tomato;
+    color: white;
+    border-radius: 10px;
+    padding: 8px 16px;
+    margin-left: 5px;
 }
