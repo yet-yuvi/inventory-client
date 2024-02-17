@@ -25,19 +25,11 @@ export const ProductCard = ({
   isAddedToCart,
   addToCart,
   removeFromCart,
-  cartItems,
 }) => {
-  const handleAddToCart = () => {
-    addToCart(prod);
-  };
 
-  const handleRemoveFromCart = () => {
-    if (cartItems === 0) {
-      alert("No product added");
-      return;
-    }
-    removeFromCart(prod.id);
-  };
+  const handleAddToCart = () => addToCart(prod);
+
+  const handleRemoveFromCart = () => removeFromCart(prod.id);
 
   return (
     <div className="product-card">
@@ -47,11 +39,11 @@ export const ProductCard = ({
       <button onClick={handleAddToCart} className="add-cart-btn">
         Add to Cart
       </button>
-      {isAddedToCart && 
+      {isAddedToCart && (
         <button onClick={handleRemoveFromCart} className="remove-cart-btn">
           Remove from Cart
         </button>
-      }
+      )}
     </div>
   );
 };
