@@ -4,9 +4,7 @@ import { CartIcon } from "../icons";
 import { CartContext } from "../contexts";
 
 export function GlobalCart() {
-  const {cart, appName} = useContext(CartContext);
-
-  console.log(cart, appName);
+  const { cart } = useContext(CartContext);
 
   return (
     <Badge badgeContent={cart.length} color="warning">

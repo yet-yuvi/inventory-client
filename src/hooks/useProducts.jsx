@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ProductServices } from "../../../services";
+import { ProductServices } from "../services";
 
 export const useProducts = () => {
   const [cart, setCart] = useState([]);
@@ -24,11 +24,11 @@ export const useProducts = () => {
 
   const cartItems = cart.length;
 
-  return {
+  return ({
     cartItems,
     products,
     isProductExistInCart,
     addProductToCart,
     removeProductFromCart,
-  };
+  });
 };
