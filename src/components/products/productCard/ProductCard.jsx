@@ -1,49 +1,37 @@
-// import React from 'react';
-// import './ProductCard.css';
-
-// export const ProductCard = ({prod, addToCart}) => {
-
-//   const handleAddToCart = () => {
-//     addToCart(prod);
-//   }
-//   return (
-//     <div className='product-card'>
-//         <h1>{prod.name}</h1>
-//         <p>{`Tk ${prod.price}`}</p>
-//         <p>{`Quantity: ${prod.quantity}`}</p>
-//         <button onClick={handleAddToCart} className='add-cart-btn'>Add to Cart</button>
-//     </div>
-//   );
-// }
-
-// Remove product button added
-import React from "react";
+import { useContext } from "react";
+import { CartContext } from "../../../contexts";
+import { Card } from "../../../ui";
 import "./ProductCard.css";
 
-export const ProductCard = ({
-  prod,
-  isAddedToCart,
-  addToCart,
-  removeFromCart,
-}) => {
+export function ProductCard({ product }) {
+  const {
+    addProductToCart,
+    removeProductFromCart,
+    isProductExistInCart,
+  } = useContext(CartContext);
 
-  const handleAddToCart = () => addToCart(prod);
+  const handleAddToCart = () => addProductToCart(product);
 
-  const handleRemoveFromCart = () => removeFromCart(prod.id);
+  const handleRemoveFromCart = () => removeProductFromCart(product.id);
+
+  const isAddedToCart = isProductExistInCart(product.id);
 
   return (
-    <div className="product-card">
-      <h1>{prod.name}</h1>
-      <p>{`Tk ${prod.price}`}</p>
-      <p>{`Quantity: ${prod.quantity}`}</p>
-      <button onClick={handleAddToCart} className="add-cart-btn">
+    <Card sx={{ width: 345 }}>
+      <h2>{product.name}</h2>
+      <p>{`TK ${product.price}`}</p>
+      <p>{`Quantity: ${product.quantity}`}</p>
+      <button onClick={handleAddToCart} className="product-card-cart-btn">
         Add to Cart
       </button>
       {isAddedToCart && (
-        <button onClick={handleRemoveFromCart} className="remove-cart-btn">
+        <button
+          className="product-card-cart-btn danger"
+          onClick={handleRemoveFromCart}
+        >
           Remove from Cart
         </button>
       )}
-    </div>
+    </Card>
   );
-};
+}
