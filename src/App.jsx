@@ -1,9 +1,9 @@
-import React from "react";
-import { Navbar, Footer, Products } from "./components";
-import { CartProvider } from "./contexts";
+import { Products } from "./components";
+import { AppRouterProvider } from "./routes";
+import { Outlet } from "react-router-dom";
 import "./App.css";
 
-function MainArea() {
+export function MainArea() {
   return (
     <main>
       <Products />
@@ -13,13 +13,9 @@ function MainArea() {
 
 function App() {
   return (
-    <div className="App">
-      <CartProvider>
-        <Navbar />
-        <MainArea />
-        </CartProvider>
-      <Footer />
-    </div>
+    <AppRouterProvider>
+      <Outlet />
+    </AppRouterProvider>
   );
 }
 
