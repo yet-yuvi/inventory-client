@@ -3,11 +3,15 @@ import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, 
 
 import { MenuIcon, AdbIcon } from '../../icons';
 import { GlobalCart } from '../Cart';
+import { useNavigate } from 'react-router-dom';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Products', 'Contact', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export function Navbar() {
+
+  const navigate = useNavigate();
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -17,6 +21,11 @@ export function Navbar() {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+
+  const handleRouteChange = (route) => {
+    handleCloseNavMenu();
+    navigate(route.toLowerCase());
+  }
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -35,7 +44,7 @@ export function Navbar() {
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -108,7 +117,7 @@ export function Navbar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={ () => handleRouteChange(page)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}

@@ -6,7 +6,7 @@ import "./App.css";
 export function MainArea() {
   return (
     <main>
-      <Products />
+      <Outlet />
     </main>
   );
 }
