@@ -1,32 +1,38 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { ContactPage, Layout, LoginPage, ProductsPage } from '../pages';
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Layout, LoginPage, ContactPage, ProductsPage } from "../pages";
+import { ProductForm, Products } from "../components";
 
 const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <Layout />,
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      ...['/', 'products'].map((path) => ({
+        path,
+        element: <ProductsPage />,
         children: [
             {
-                index: true,
-                element: <ProductsPage />
+                index: 'true',
+                element: <Products />,
             },
             {
-                path: '/products',
-                element: <ProductsPage />,
-            },
-            {
-                path: '/contact',
-                element: <ContactPage />
+                path: 'add',
+                element: <ProductForm />,
             }
-        ]
-    },
-    {
-        path: '/login',
-        element: <LoginPage />,
-    },
-])
+        ],
+      })),
+      {
+        path: "contact",
+        element: <ContactPage />,
+      },
+    ],
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+]);
 
-export const AppRouterProvider = ({children}) => {
-    return (<RouterProvider router={router}>{children}</RouterProvider>);
+export const AppRouterProvider = ({ children }) => {
+  return <RouterProvider router={router}>{children}</RouterProvider>;
 };
