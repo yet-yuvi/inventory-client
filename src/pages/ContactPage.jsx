@@ -3,6 +3,8 @@ import { Box } from '../ui'
 
 export const ContactPage = () => {
   return (
-    <Box> <h1>Contact</h1> </Box>
+    <Box display="flex"
+    justifyContent="center"
+    alignItems="center" > <h1>Contact</h1> </Box>
   )
 }
