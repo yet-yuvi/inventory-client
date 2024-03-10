@@ -1,11 +1,21 @@
-import { useProducts } from '../../hooks';
+import { useEffect, useState } from 'react';
 
 import { ProductCard } from './productCard/ProductCard';
 
 import './Products.css';
+import { ProductServices } from '../../services';
 
 export const Products = () => {
-  const { products } = useProducts();
+  const [ products, setProducts ] = useState([]);
+
+  useEffect(() => {
+    ProductServices.getProducts()
+    .then((data) => setProducts(data))
+    .catch((e) => {
+      console.error(e);
+      alert('Failed to fetch products');
+    })
+  }, [])
 
   return (
     <div className="products">
