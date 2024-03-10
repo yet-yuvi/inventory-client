@@ -1,22 +1,11 @@
-import { useEffect, useState } from 'react';
-
 import { ProductCard } from './productCard/ProductCard';
 
+import { useProducts } from '../../hooks';
 import './Products.css';
-import { ProductServices } from '../../services';
 
 export const Products = () => {
-  const [ products, setProducts ] = useState([]);
-
-  useEffect(() => {
-    ProductServices.getProducts()
-    .then((data) => setProducts(data))
-    .catch((e) => {
-      console.error(e);
-      alert('Failed to fetch products');
-    })
-  }, [])
-
+  const { products } = useProducts();
+  
   return (
     <div className="products">
       <div className="products-grid">

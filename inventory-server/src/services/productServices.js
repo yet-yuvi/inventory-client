@@ -12,7 +12,7 @@ const getProducts = () => [
       quantity: 40,
     },
     {
-        id: '2',
+        id: '3',
         name: 'Mouse',
         price: 2000,
         quantity: 90,
