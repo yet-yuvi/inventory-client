@@ -13,6 +13,7 @@ import {
     MenuItem,
     InputBase,
     Stack,
+    TextField,
 } from "@mui/material";
 
 import { Box } from "./Box"
@@ -33,4 +34,5 @@ export {
     MenuItem,
     InputBase,
     Stack,
+    TextField,
 };

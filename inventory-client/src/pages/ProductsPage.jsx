@@ -4,12 +4,12 @@ import { Box, Button, Stack } from "../ui";
 
 export const ProductsPage = () => {
   const navigate = useNavigate();
-  const routeToProductForm = () => navigate("/products/add");
+  const routeToProductForm = () => navigate("/product-form");
 
   return (
     <Stack>
       <Box justifyContent="flex-end" px={2} py={2}>
-        <Link to="/products/add">
+        <Link to="/product-form">
           <Button 
           variant="contained" 
           size="small">
