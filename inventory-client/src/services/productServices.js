@@ -6,6 +6,8 @@ const getProducts = async () => {
   return productResponse.data;
 };
 
+const createProduct = (product) => invAxios.post('/products', product);    //payload
+
 export const ProductServices = {
-  getProducts,
+  getProducts, createProduct
 };

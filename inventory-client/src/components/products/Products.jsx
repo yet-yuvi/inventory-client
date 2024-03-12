@@ -1,5 +1,6 @@
 import { ProductCard } from './productCard/ProductCard';
 
+import { Box } from '../../ui';
 import { useProducts } from '../../hooks';
 import './Products.css';
 
@@ -8,14 +9,11 @@ export const Products = () => {
   
   return (
     <div className="products">
-      <div className="products-grid">
+      <Box flexWrap="wrap" gap={2} justifyContent="center">
         {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-          />
+          <ProductCard key={product.id} product={product} />
         ))}
-      </div>
+      </Box>
     </div>
   );
 };
