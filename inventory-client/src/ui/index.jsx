@@ -16,6 +16,8 @@ import {
     TextField,
 } from "@mui/material";
 
+import { DataGrid as Table } from '@mui/x-data-grid';
+
 import { Box } from "./Box"
 
 export { 
@@ -35,4 +37,5 @@ export {
     InputBase,
     Stack,
     TextField,
+    Table,
 };
