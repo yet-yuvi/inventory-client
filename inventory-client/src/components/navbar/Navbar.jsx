@@ -6,7 +6,7 @@ import { GlobalCart } from '../Cart';
 import { useNavigate } from 'react-router-dom';
 
 const pages = ['Products', 'Contact', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'inventory', 'Logout'];
 
 export function Navbar() {
 
@@ -34,6 +34,8 @@ export function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleUserMenuClick = (path) => navigate(`/${path}`);
 
   return (
     <AppBar position="static">
@@ -151,9 +153,12 @@ export function Navbar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
+                <MenuItem
+                key={setting}
+                onClick={() => handleUserMenuClick(setting.toLowerCase())}
+              >
+                <Typography textAlign="center">{setting}</Typography>
+              </MenuItem>
               ))}
             </Menu>
           </Box>
