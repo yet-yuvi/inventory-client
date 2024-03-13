@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Layout, LoginPage, ContactPage, ProductsPage } from "../pages";
+import { Layout, LoginPage, ContactPage, ProductsPage, InventoryPage } from "../pages";
 import { ProductForm, Products } from "../components";
 
 const router = createBrowserRouter([
@@ -24,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <ContactPage />,
+      },
+      {
+        path: "inventory",
+        element: <InventoryPage />,
       },
     ],
   },
