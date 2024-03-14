@@ -1,14 +1,26 @@
-import React from 'react';
+import React from "react";
 
-import { Box, Table } from '../ui';
+import { Box, IconButton, Table } from "../ui";
 
+import { useProducts } from "../hooks";
+import { EditIcon, DeleteIcon } from "../icons";
 
-import { useProducts } from '../hooks';
-
-
+const ProductActions = ({ productRowData }) => {
+  console.log(productRowData);
+  return (
+    <Box>
+      <IconButton>
+        <EditIcon />
+      </IconButton>
+      <IconButton>
+        <DeleteIcon />
+      </IconButton>
+    </Box>
+  );
+};
 
 export const InventoryPage = () => {
-  const { products } = useProducts();
+  const { isLoading, products } = useProducts();
 
   const getFormattedRows = () => {
     return products.map((product, index) => ({
@@ -26,43 +38,52 @@ export const InventoryPage = () => {
     <Box px={8} py={4}>
       <Table
         autoHeight
-
+        loading={isLoading}
         initialState={{
           pagination: { paginationModel: { pageSize: 10 } },
         }}
-
         columns={[
-          { field: 'ID' },
-          { field: 'name', headerName: 'Product Name', width: 300 },
-          { field: 'description', headerName: 'Description', width: 300 },
-          { 
-            align: 'center',
-            field: 'createdAt', 
-            headerName: 'Added On', 
-            headerAlign: 'center',
+          { field: "ID" },
+          { field: "name", headerName: "Product Name", width: 300 },
+          { field: "description", headerName: "Description", width: 300 },
+          {
+            align: "center",
+            field: "createdAt",
+            headerName: "Added On",
+            headerAlign: "center",
             width: 200,
-            type: 'dateTime',
+            type: "dateTime",
           },
           {
-            align: 'right',
-            field: 'price',
-            headerName: 'Price (TK)',
-            headerAlign: 'right',
-            type: 'number',
+            align: "right",
+            field: "price",
+            headerName: "Price (TK)",
+            headerAlign: "right",
+            type: "number",
             width: 180,
           },
           {
-            align: 'center',
-            field: 'quantity',
-            headerName: 'Quantity',
-            headerAlign: 'center',
-            type: 'number',
+            align: "center",
+            field: "quantity",
+            headerName: "Quantity",
+            headerAlign: "center",
+            type: "number",
+          },
+          {
+            align: "center",
+            field: "action",
+            headerName: "Actions",
+            headerAlign: "center",
+            width: "300",
+            renderCell: (rowData) => (
+              <ProductActions productRowData={rowData} />
+            ),
           },
         ]}
         rows={getFormattedRows()}
         slots={{ noRowsOverlay: () => <h1>No Data found!!</h1> }}
         pageSizeOptions={[5, 10, 25]}
-        sx={{ '--DataGrid-overlayHeight': '300px' }}
+        sx={{ "--DataGrid-overlayHeight": "300px" }}
       />
     </Box>
   );
