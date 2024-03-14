@@ -8,7 +8,7 @@ import { useProducts } from '../hooks';
 
 
 export const InventoryPage = () => {
-  const { isLoading, products } = useProducts();
+  const { products } = useProducts();
 
   const getFormattedRows = () => {
     return products.map((product, index) => ({
@@ -26,11 +26,23 @@ export const InventoryPage = () => {
     <Box px={8} py={4}>
       <Table
         autoHeight
+
+        initialState={{
+          pagination: { paginationModel: { pageSize: 10 } },
+        }}
+
         columns={[
           { field: 'ID' },
           { field: 'name', headerName: 'Product Name', width: 300 },
           { field: 'description', headerName: 'Description', width: 300 },
-          { field: 'createdAt', headerName: 'Added On' },
+          { 
+            align: 'center',
+            field: 'createdAt', 
+            headerName: 'Added On', 
+            headerAlign: 'center',
+            width: 200,
+            type: 'dateTime',
+          },
           {
             align: 'right',
             field: 'price',

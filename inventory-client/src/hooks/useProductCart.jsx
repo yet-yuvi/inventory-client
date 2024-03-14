@@ -5,10 +5,10 @@ export const useProductCart = () => {
 
 
   const isProductExistInCart = (productId) =>
-    cart.some((product) => product.id === productId);
+    cart.some((product) => product._id === productId);
 
   const addProductToCart = (product) => {
-    if (isProductExistInCart(product.id)) {
+    if (isProductExistInCart(product._id)) {
       alert("Already added!!!");
       return;
     }
@@ -16,7 +16,7 @@ export const useProductCart = () => {
   };
 
   const removeProductFromCart = (productId) => {
-    setCart(cart.filter((cartItem) => cartItem.id !== productId));
+    setCart(cart.filter((cartItem) => cartItem._id !== productId));
   };
 
   return({
