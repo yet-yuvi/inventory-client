@@ -10,6 +10,20 @@ const createProduct = (payload) => {
   return product.save();
 };
 
-const ProductServices = { createProduct, getProducts };
+const deleteProduct = async (productId) => {
+  const product = Product.findById(productId);
+  if(!product) {
+    throw Error('Product does not exist');
+  }
+  try {
+     await Product.deleteOne({_id: productId});
+  } catch(err) {
+    console.log(err);
+    throw err;
+  }
+  
+}
+
+const ProductServices = { createProduct, getProducts, deleteProduct };
 
 module.exports = ProductServices;
