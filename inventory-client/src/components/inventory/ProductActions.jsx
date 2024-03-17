@@ -22,7 +22,7 @@ export const ProductActions = ({ productRowData }) => {
   const onConfirmProductDelete = () => {
     setIsDeleting(true);
     ProductServices.deleteProduct(productToDelete)
-      .then()
+      .then(() => window.location.reload())
       .catch((err) => {
         console.error(err);
         alert("Failed to delete");
