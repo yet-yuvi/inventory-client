@@ -11,7 +11,7 @@ export const Products = () => {
     <div className="products">
       <Box flexWrap="wrap" gap={2} justifyContent="center">
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product._id} product={product} />
         ))}
       </Box>
     </div>
