@@ -23,4 +23,11 @@ productRouter.delete('/products/:id', async(req, res) => {
     res.status(200).json({message: 'Successfully deleted' });
 })
 
+productRouter.put('/products/:id', async(req, res) => {
+    const { id } = req.params;
+    const updatedData = req.body;
+    await ProductServices.editProduct(id, updatedData);
+    res.status(200).json({message: 'Successfully edited' });
+})
+
 module.exports = productRouter;
