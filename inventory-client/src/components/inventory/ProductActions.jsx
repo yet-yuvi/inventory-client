@@ -11,10 +11,13 @@ import {
 } from "../../ui";
 import { EditIcon, DeleteIcon } from "../../icons";
 import { ProductServices } from "../../services";
+import { EditProductDrawer } from "../inventory";
+
 
 export const ProductActions = ({ productRowData }) => {
   const [productToDelete, setProductToDelete] = React.useState(null);
   const [isDeleting, setIsDeleting] = React.useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(null);
   console.log();
 
   const onCloseDeleteModal = () => setProductToDelete(null);
@@ -33,11 +36,22 @@ export const ProductActions = ({ productRowData }) => {
       });
   };
 
+  const handleEditClick = (productId) => {
+    setIsDrawerOpen(Boolean(productId));
+  };
+
   return (
     <Box>
-      <IconButton>
+      <IconButton onClick={() => handleEditClick(productRowData.row.id)}>
         <EditIcon />
       </IconButton>
+
+      <EditProductDrawer
+        open={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(null)}
+        productRowData= {productRowData}
+      />
+
       <IconButton onClick={() => setProductToDelete(productRowData.row.id)}>
         <DeleteIcon />
       </IconButton>

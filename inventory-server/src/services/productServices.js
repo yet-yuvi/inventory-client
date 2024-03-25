@@ -24,6 +24,19 @@ const deleteProduct = async (productId) => {
   
 }
 
-const ProductServices = { createProduct, getProducts, deleteProduct };
+const editProduct = async (productId, updatedData) => {
+  const product = await Product.findById(productId);
+  if(!product) {
+    throw Error('Product does not exist');
+  }
+  try {
+    await Product.findByIdAndUpdate({_id: productId}, updatedData);
+  } catch(err) {
+    console.log(err);
+    throw err;
+  }
+}
+
+const ProductServices = { createProduct, getProducts, deleteProduct, editProduct };
 
 module.exports = ProductServices;
