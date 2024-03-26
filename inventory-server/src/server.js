@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const connectDB = require('./config/db');
 const productRouter = require('./routes/productRoutes');
+const authRouter = require('./routes/authRoutes');
 const app = express();
 
 app.use(
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 // Connect with mongoDB
 connectDB();
 
+app.use('/api', authRouter)
 app.use('/api', productRouter);
 
 // Start the server
