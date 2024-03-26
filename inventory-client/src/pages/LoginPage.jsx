@@ -15,13 +15,17 @@ export const LoginPage = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    AuthServices.setAuthToken('dummy token');
-    window.history.back();
+    AuthServices.login(credential)
+    .then(() => window.history.back())
+    .catch((err) => {
+      console.error(err);
+      alert('Invalid Credential');
+    })
   }
 
   return (
     <form onSubmit={handleLogin}>
-    <Box justifyContent="center" alignItem="center" marginY={10}>
+    <Box justifyContent="center" alignItems="center" marginY={10}>
       <Stack spacing={2} width={500} marginTop={20}>
 
         <InputBase 
