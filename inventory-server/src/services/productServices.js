@@ -30,7 +30,8 @@ const editProduct = async (productId, updatedData) => {
     throw Error('Product does not exist');
   }
   try {
-    await Product.findByIdAndUpdate({_id: productId}, updatedData);
+    await Product.findByIdAndUpdate({_id: productId}, updatedData, { new: true });
+    return updatedData;
   } catch(err) {
     console.log(err);
     throw err;
