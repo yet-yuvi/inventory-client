@@ -1,11 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Box, Button, Stack, TextField, Typography } from "../../ui";
 import { ProductServices } from "../../services";
 
 export const EditForm = ({ productRowData, onClose }) => {
-  const navigate = useNavigate();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
