@@ -20,18 +20,6 @@ connectDB();
 
 app.use('/api', productRouter);
 
-// Routes
-// app.use('/api/users', require('./routes/api/users'));
-// app.use('/api/products', require('./routes/api/products'));
-// app.use('/api/orders', require('./routes/api/orders'));
-
-// Define a simple rout
-// app.get('/', (req, res) => {
-    // res.json({message: 'welcome to my application'});
-// })
-
-
-
 // Start the server
 const port = process.env.PORT || 6002;
 app.listen(port, () => {
