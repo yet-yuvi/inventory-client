@@ -1,24 +1,35 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Layout, LoginPage, ContactPage, ProductsPage, InventoryPage } from "../pages";
+import {
+  Layout,
+  LoginPage,
+  ContactPage,
+  ProductsPage,
+  InventoryPage,
+} from "../pages";
 import { ProductForm, Products } from "../components";
+import SecureRoute from "./SecureRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
-      ...['/', 'products'].map((path) => ({
+      ...["/", "products"].map((path) => ({
         path,
         element: <ProductsPage />,
         children: [
-            {
-                index: 'true',
-                element: <Products />,
-            },
-            {
-                path: 'product-form',
-                element: <ProductForm />,
-            }
+          {
+            index: "true",
+            element: <Products />,
+          },
+          {
+            path: "product-form",
+            element: (
+              <SecureRoute>
+                <ProductForm />
+              </SecureRoute>
+            ),
+          },
         ],
       })),
       {
@@ -27,7 +38,11 @@ const router = createBrowserRouter([
       },
       {
         path: "inventory",
-        element: <InventoryPage />,
+        element: (
+          <SecureRoute>
+            <InventoryPage />
+          </SecureRoute>
+        ),
       },
     ],
   },
