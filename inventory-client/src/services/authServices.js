@@ -13,8 +13,8 @@ const hasToken = () => Boolean(getAuthToken());
 
 const login = async ({ email, password}) => {
     const res = await invAxios.post('/login', { email, password});
-    const { access_token } = res.data;
-    setAuthToken(access_token);
+    const { accessToken } = res.data;
+    setAuthToken(accessToken);
 }
 
 export const AuthServices = {
