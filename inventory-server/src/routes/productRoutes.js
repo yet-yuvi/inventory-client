@@ -1,5 +1,6 @@
 const express = require('express');
 const { ProductServices } = require('../services');
+const { authenticate } = require('../middlewares');
 
 const productRouter = express.Router();
 
@@ -8,7 +9,7 @@ productRouter.get('/products', async (req, res) => {
     res.json(products);
 });
 
-productRouter.post('/products', async (req, res) => {
+productRouter.post('/products', authenticate, async (req, res) => {
     try{
         const product = await ProductServices.createProduct(req.body);
         res.status(201).json(product);
@@ -17,13 +18,13 @@ productRouter.post('/products', async (req, res) => {
     }
 })
 
-productRouter.delete('/products/:id', async(req, res) => {
+productRouter.delete('/products/:id', authenticate, async(req, res) => {
     const { id } = req.params;
     await ProductServices.deleteProduct(id);
     res.status(200).json({message: 'Successfully deleted' });
 })
 
-productRouter.put('/products/:id', async(req, res) => {
+productRouter.put('/products/:id', authenticate, async(req, res) => {
     const { id } = req.params;
     const updatedData = req.body;
     await ProductServices.editProduct(id, updatedData);
