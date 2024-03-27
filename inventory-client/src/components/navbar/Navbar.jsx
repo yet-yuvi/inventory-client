@@ -4,6 +4,7 @@ import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, 
 import { MenuIcon, AdbIcon } from '../../icons';
 import { GlobalCart } from '../Cart';
 import { useNavigate } from 'react-router-dom';
+import { AuthServices } from '../../services';
 
 const pages = ['Products', 'Contact', 'Blog'];
 const settings = ['Profile', 'Account', 'inventory', 'Logout'];
@@ -36,6 +37,16 @@ export function Navbar() {
   };
 
   const handleUserMenuClick = (path) => navigate(`/${path}`);
+
+  const handleSettingsMenuClick = (setting) => {
+    if (setting === 'Logout') {
+      AuthServices.logout();
+      window.location.reload();
+      return;
+    }
+
+    handleUserMenuClick(setting.toLowerCase());
+  };
 
   return (
     <AppBar position="static">
@@ -131,11 +142,21 @@ export function Navbar() {
 
             <GlobalCart />
 
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
+            {AuthServices.isAuthenticated() ? (
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Tooltip>
+            ) : (
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => navigate('/login')}
+              >
+                Login
+              </Button>
+            )}
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -155,7 +176,7 @@ export function Navbar() {
               {settings.map((setting) => (
                 <MenuItem
                 key={setting}
-                onClick={() => handleUserMenuClick(setting.toLowerCase())}
+                onClick={() => handleSettingsMenuClick(setting)}
               >
                 <Typography textAlign="center">{setting}</Typography>
               </MenuItem>
