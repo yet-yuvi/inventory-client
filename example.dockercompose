@@ -1,0 +1,30 @@
+services:
+  inventory-client:
+    container_name: inventory-client
+    build:
+      context: ./inventory-client
+      dockerfile: dockerfile
+    image: inventory-client-image  
+    depends_on:
+      - inventory-server
+    ports:
+      - 5173:5173
+    volumes:
+      - ./inventory-client/src/:/app/src
+
+  inventory-server:
+    container_name: inventory-server
+    build:
+      context: ./inventory-server
+      dockerfile: dockerfile
+    image: inventory-server-image
+    ports:
+      - 7000:7000
+    volumes:
+      - ./inventory-server/src/:/app/src
+    environment:
+      - MONGODB_USERNAME=
+      - MONGODB_PASSWORD=
+      - MONGODB_URI=
+      - PORT=
+      - JWT_SECRET=
